@@ -152,7 +152,7 @@
                 </ul>
             </section>
         </aside>
-        <aside class="right-side" class="position-absolute top-100 start-0">
+        <aside class="right-side" >
             <section class="content-header">
                 <h1> <asp:Label ID="lblOpcionMenu" runat="server"  text="Panel General"></asp:Label> </h1>
             </section>

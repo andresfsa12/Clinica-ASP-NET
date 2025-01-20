@@ -3,5 +3,5 @@
     <!--PONER SCRIPTS Y ESTILOS PARA ALGUNOS CONTROLES ESPECIFICOS-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <p>HOLA</p>
+
 </asp:Content>

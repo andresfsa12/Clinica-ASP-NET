@@ -26,13 +26,13 @@
                             <label>APELLIDO PATERNO:</label>
                          </div>
                         <div class="form-group">
-                           <asp:TextBox ID="txtApellidoPaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                           <asp:TextBox ID="txtApPaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
                         </div>
                         <div class="form-group">
                             <label>APELLIDO MATERNO:</label>
                          </div>
                         <div class="form-group">
-                           <asp:TextBox ID="txtApellidoMaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                           <asp:TextBox ID="txtApMaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
                         </div>
                      </div>
                     </div>
@@ -50,7 +50,7 @@
                             <label>SEXO:</label>
                          </div>
                         <div class="form-group">
-                           <asp:DropDownList ID="ddlSexo" runat="server"  CssClass="form-control"></asp:DropDownList>  
+                           <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
                         <div class="form-group">
                             <label>DIRECCION:</label>
@@ -75,7 +75,7 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Text="Registrar" Width="200px" />
+                            <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Text="Registrar" Width="200px" OnClick="btnRegistrar_Click"/>
                         </td>
                         <td>
                             &nbsp;&nbsp;&nbsp;&nbsp;

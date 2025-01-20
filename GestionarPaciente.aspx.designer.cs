@@ -33,22 +33,22 @@ namespace CapaPresentacion
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
 
         /// <summary>
-        /// Control txtApellidoPaterno.
+        /// Control txtApPaterno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellidoPaterno;
+        protected global::System.Web.UI.WebControls.TextBox txtApPaterno;
 
         /// <summary>
-        /// Control txtApellidoMaterno.
+        /// Control txtApMaterno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellidoMaterno;
+        protected global::System.Web.UI.WebControls.TextBox txtApMaterno;
 
         /// <summary>
         /// Control txtEdad.
