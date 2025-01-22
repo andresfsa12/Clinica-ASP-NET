@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using CapaEntidades;
 using CapaLogicaNegocio;
@@ -25,6 +27,37 @@ namespace CapaPresentacion
                 ddlSexo.DataBind();
             }
         }
+
+        [WebMethod]
+        public static List<Paciente> ListarPacientes()
+        {
+            List<Paciente> Lista = null;
+            try
+            {
+                Lista = PacienteLN.getInstance().ListarPacientes();
+            }
+            catch (Exception ex)
+            {
+                Lista = new List<Paciente>();
+            }
+            return Lista;
+        }
+
+        [WebMethod]
+        public static bool ActualizarDatosPaciente(String id, String direccion)
+        {
+            Paciente objPaciente = new Paciente()
+            {
+                IdPaciente = Convert.ToInt32(id),
+                Direccion = direccion
+            };
+
+            bool ok = PacienteLN.getInstance().Actualizar(objPaciente);
+
+            return ok;
+        }
+            
+
         public Paciente GetEntity()
         {
             Paciente objPaciente = new Paciente();
@@ -32,23 +65,12 @@ namespace CapaPresentacion
             objPaciente.Nombres = txtNombres.Text;
             objPaciente.ApPaterno = txtApPaterno.Text;
             objPaciente.ApMaterno = txtApMaterno.Text;
-
-            int edad;
-            if (int.TryParse(txtEdad.Text.Trim(), out edad))
-            {
-                objPaciente.Edad = edad;
-            }
-            else
-            {
-                // Mostrar un mensaje de error al usuario
-                MessageBox.Show("Por favor, ingrese un número válido para la edad.");
-            }
-            objPaciente.Sexo = Convert.ToChar(ddlSexo.SelectedValue); 
+            objPaciente.Edad = txtEdad.Text;
+            objPaciente.Sexo = ddlSexo.Text; 
             objPaciente.NroDocumento = txtNroDocumento.Text;
             objPaciente.Direccion = txtDireccion.Text;
             objPaciente.Telefono = txtTelefono.Text;
             objPaciente.Estado = true;
-            objPaciente.Imagen = null;
 
             return objPaciente;
         }
