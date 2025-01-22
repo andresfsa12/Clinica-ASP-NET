@@ -1,4 +1,17 @@
-﻿function addRow() {
+﻿function templateRow() {
+    var template = "<tr>";
+    template += ("<td>" + "123" + "</td>");
+    template += ("<td>" + "Jorge Junior" + "</td>");
+    template += ("<td>" + "Rodriguez Castillo" + "</td>");
+    template += ("<td>" + "123" + "</td>");
+    template += ("<td>" + "123" + "</td>");
+    template += ("<td>" + "123" + "</td>");
+    template += ("<td>" + "123" + "</td>");
+    template += "</tr>";
+    return template;
+}
+
+function addRow() {
     var template = templateRow();
     for (var i = 0; i < 10; i++) {
         $("#tbl_body_table").append(template);
@@ -6,22 +19,40 @@
 }
 
 var tabla, data;
+
 function addRowDT(data) {
-    tabla = $("#tbl_pacientes").DataTable();
+    tabla = $("#tbl_pacientes").DataTable({
+        "aaSorting": [[0, 'desc']],
+        "bSort": true,
+        "bDestroy": true,
+        "aoColumns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {"bSortable" : false}
+        ]
+    });
+
+    tabla.fnClearTable();
+
     for (var i = 0; i < data.length; i++) {
         tabla.fnAddData([
             data[i].IdPaciente,
             data[i].Nombres,
             (data[i].ApPaterno + " " + data[i].ApMaterno),
-            ((data[i].Sexo == 'M') ? "Masculino" : "Femenino"),
+            ((data[i].Sexo == 'M')? "Masculino": "Femenino"),
             data[i].Edad,
             data[i].Direccion,
-            '<button value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit data-target="#imodal" data-toggle="modal"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&nbsp;'+
-            '<button value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></button>'
+            '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>&nbsp;' +
+            '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete"><i class="fa fa-minus-square-o" aria-hidden="true"></i></button>'
+           
         ]);
     }
-
-}   
+    //  ((data[i].Estado == true) ? "Activo" : "Inactivo")
+}
 
 function sendDataAjax() {
     $.ajax({
@@ -39,7 +70,6 @@ function sendDataAjax() {
 }
 
 function updateDataAjax() {
-
     var obj = JSON.stringify({ id: JSON.stringify(data[0]), direccion: $("#txtModalDireccion").val() });
 
     $.ajax({
@@ -49,19 +79,49 @@ function updateDataAjax() {
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + "\n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (response) {
+
+            if (response.d) {
+                alert("Registro actualizado correctamente");
+            }
+            else {
+                alert("No se pudo realizar el registro");
+            }
+
+            // Verificar si data es un array
+            //console.log(response)
+            //addRowDT(response);
+        }
+
+    });
+}
+
+function deleteDataAjax(data) {
+
+    var obj = JSON.stringify({ id: JSON.stringify(data) });
+
+    $.ajax({
+        type: "POST",
+        url: "GestionarPaciente.aspx/EliminarDatosPaciente",
+        data: obj,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         success: function (response) {
             if (response.d) {
-                alert("Registro actualizado de manera correcta.");
+                alert("Registro eliminado de manera correcta.");
             } else {
-                alert("No se pudo actualizar el registro.");
+                alert("No se pudo eliminar el registro.");
             }
         }
     });
 }
 
-//Evento Click para boton actualizar
+// evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
     e.preventDefault();
 
@@ -70,14 +130,21 @@ $(document).on('click', '.btn-edit', function (e) {
     fillModalData();
 });
 
-//Evento Click para boton eliminar
+// evento click para boton eliminar
 $(document).on('click', '.btn-delete', function (e) {
     e.preventDefault();
+
     var row = $(this).parent().parent()[0];
-    var data = tabla.fnGetData(row);
+    var dataRow = tabla.fnGetData(row);
+
+    // paso 1: enviar el id al servidor por medio de ajax
+    deleteDataAjax(dataRow[0]);
+    // paso 2: renderizar el datatable
+    sendDataAjax();
 });
 
-//Cargar datos en el modal
+
+// cargar datos en el modal
 function fillModalData() {
     $("#txtFullName").val(data[1] + " " + data[2]);
     $("#txtModalDireccion").val(data[5]);
@@ -89,5 +156,5 @@ $("#btnactualizar").click(function (e) {
     updateDataAjax();
 });
 
-//Llamado a la funcion AJAX al cargar el documento
+// Llamando a la funcion de ajax al cargar el documento
 sendDataAjax();

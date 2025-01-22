@@ -18,13 +18,7 @@ namespace CapaPresentacion
         {
             if (!Page.IsPostBack)
             {
-                List<ListItem> items = new List<ListItem>();
-                items.Add(new ListItem("Masculino", "M"));
-                items.Add(new ListItem("Femenino", "F"));
-                ddlSexo.DataSource = items;
-                ddlSexo.DataTextField = "Text";
-                ddlSexo.DataValueField = "Value";
-                ddlSexo.DataBind();
+                
             }
         }
 
@@ -56,7 +50,17 @@ namespace CapaPresentacion
 
             return ok;
         }
-            
+
+        [WebMethod]
+        public static bool EliminarDatosPaciente(String id)
+        {
+            Int32 idPaciente = Convert.ToInt32(id);
+
+            bool ok = PacienteLN.getInstance().Eliminar(idPaciente);
+
+            return ok;
+
+        }
 
         public Paciente GetEntity()
         {

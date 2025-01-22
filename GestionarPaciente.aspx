@@ -41,29 +41,31 @@
                      <div class="box box-primary">
                         <div class="box-body">
                             <div class="form-group">
+                                <label>SEXO:</label>
+                            </div>
+                            <div class="form-group">
+                               <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
                                 <label>EDAD:</label>
                              </div>
                             <div class="form-group">
                                <asp:TextBox ID="txtEdad" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
                             </div>
-                            <div class="form-group">
-                                <label>SEXO:</label>
-                             </div>
-                            <div class="form-group">
-                               <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
-                            </div>
-                            <div class="form-group">
-                                <label>DIRECCION:</label>
-                             </div>
-                            <div class="form-group">
-                               <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
-                            </div>
+                            
+                           
                             <div class="form-group">
                                 <label>TELEFONO:</label>
                              </div>
                             <div class="form-group">
                                <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
                             </div>
+                            <div class="form-group">
+                             <label>DIRECCION:</label>
+                            </div>
+                             <div class="form-group">
+                                <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                             </div>
                         </div>
                     </div>
                 </div>   
@@ -145,4 +147,10 @@
     </div>
 </div>
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <script src="js/paciente.js" type="text/javascript">
+    
+    </script>
+</asp:Content>
+
 

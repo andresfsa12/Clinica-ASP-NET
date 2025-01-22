@@ -13,11 +13,14 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                Session["UserSessionId"] = null;
+            }
         }
         protected void BtnIngresar_Click(object sender, EventArgs e)
         {
-            Empleado objEmpleado = EmpleadoLN.getInstance().AccesoSistema(txtUsuario.Text, txtPassword.Text);
+            Empleado objEmpleado = EmpleadoLN.getInstance().AccesoSistema(User, Password);
             if (objEmpleado != null)
             {
                 Response.Write("<script>alert('USUARIO CORRECTO.')</script>");
