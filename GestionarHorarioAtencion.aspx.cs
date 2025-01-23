@@ -23,7 +23,24 @@ namespace CapaPresentacion
             return MedicoLN.getInstance().BuscarMedico(dni);
         }
 
+        [WebMethod]
+        public static HorarioAtencion AgregarHorario(String fecha, String hora, String idmedico)
+        {
+            HorarioAtencion objHorarioAtencion = new HorarioAtencion()
+            {
+                Fecha = Convert.ToDateTime(fecha),
+                Hora = new Hora()
+                {
+                    hora = hora
+                },
+                Medico = new Medico()
+                {
+                    IdMedico = Convert.ToInt32(idmedico)
+                }
+            };
 
+            return HorarioAtencionLN.getInstance().RegistrarHorarioAtencion(objHorarioAtencion);
+        }
 
     }
 }

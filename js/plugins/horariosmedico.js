@@ -1,4 +1,27 @@
-﻿$("#btnBuscar").on("click", function (event) {
+﻿//Configuracion de timepicker y date
+$("[data-mask]").inputmask();
+$(".timepicker").timepicker({ showInputs: false, showMeridian: false, minuteStep: 30 });
+
+var tabla;
+
+function initDataTable() {
+
+    tabla = $("#tbl_horarios").DataTable({
+        "aaSorting": [[0, 'desc']],
+        "bSort": true,
+        "aoColumns": [
+            { "bSortable": false },
+            { "bSortable": false },
+            { "bSortable": false },
+            null,
+            null
+        ]
+    });
+
+    tabla.fnSetColumnVis(2, false);
+}
+
+$("#btnBuscar").on("click", function (event) {
 
     event.preventDefault();
 

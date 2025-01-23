@@ -56,13 +56,13 @@
                          </thead>
                          <tbody id="tbl_body_table">
                              <!--DATA POR MEDIO DE AJAX-->
-                             <tr>
+                            <!-- <tr>
                                  <td>boton-editar</td>
                                  <td>boton-eliminar</td>
                                  <td>boton-fecha</td>
                                  <td>boton-hora</td>
                                  <td style="display: none">Estado</td>
-                             </tr>
+                             </tr>-->
                          </tbody>
                      </table>
                  </div>
@@ -126,5 +126,5 @@
     <script src="js/plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <script src="js/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="js/plugins/moment/moment.min.js"></script>
-    <script src="js/horariosmedico.js"></script>
+    <script src="js/horariosmedicos.js"></script>
 </asp:Content>
