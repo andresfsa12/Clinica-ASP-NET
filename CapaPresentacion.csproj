@@ -358,6 +358,7 @@
     <Content Include="js\AdminLTE\app.js" />
     <Content Include="js\AdminLTE\dashboard.js" />
     <Content Include="js\AdminLTE\demo.js" />
+    <Content Include="js\horariosmedico.js" />
     <Content Include="js\paciente.js" />
     <Content Include="js\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="js\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
