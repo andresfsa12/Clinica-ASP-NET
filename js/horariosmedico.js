@@ -59,7 +59,7 @@ $("#btnBuscar").on("click", function (event) {
 });
 
 function llenarDatosMedico(obj) {
-    $("#lblNombres").text(obj.Nombre);
+    $("#lblNombres").text(obj.Nombres);
     $("#lblApellidos").text(obj.ApPaterno.concat(" ".concat(obj.ApMaterno)));
     $("#lblEspecialidad").text(obj.Especialidad.Descripcion);
     $("#txtMedico").val(obj.IdMedico);

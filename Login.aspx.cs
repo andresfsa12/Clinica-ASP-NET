@@ -20,7 +20,7 @@ namespace CapaPresentacion
         }
         protected void BtnIngresar_Click(object sender, EventArgs e)
         {
-            Empleado objEmpleado = EmpleadoLN.getInstance().AccesoSistema(User, Password);
+            Empleado objEmpleado = EmpleadoLN.getInstance().AccesoSistema(txtUsuario.Text, txtPassword.Text);
             if (objEmpleado != null)
             {
                 Response.Write("<script>alert('USUARIO CORRECTO.')</script>");
