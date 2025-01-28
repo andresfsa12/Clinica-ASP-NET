@@ -324,8 +324,10 @@
     <Content Include="css\timepicker\bootstrap-timepicker.css" />
     <Content Include="css\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GestionarAtencionPaciente.aspx" />
     <Content Include="GestionarHorarioAtencion.aspx" />
     <Content Include="GestionarPaciente.aspx" />
+    <Content Include="GestionarReservaCitas.aspx" />
     <Content Include="img\ajax-loader.gif" />
     <Content Include="img\ajax-loader1.gif" />
     <Content Include="img\avatar.png" />
@@ -358,7 +360,6 @@
     <Content Include="js\AdminLTE\app.js" />
     <Content Include="js\AdminLTE\dashboard.js" />
     <Content Include="js\AdminLTE\demo.js" />
-    <Content Include="js\horariosmedico.js" />
     <Content Include="js\horariosmedicos.js" />
     <Content Include="js\paciente.js" />
     <Content Include="js\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -456,7 +457,6 @@
     <Content Include="js\plugins\flot\jquery.flot.threshold.min.js" />
     <Content Include="js\plugins\flot\jquery.flot.time.js" />
     <Content Include="js\plugins\flot\jquery.flot.time.min.js" />
-    <Content Include="js\plugins\horariosmedico.js" />
     <Content Include="js\plugins\iCheck\icheck.js" />
     <Content Include="js\plugins\iCheck\icheck.min.js" />
     <Content Include="js\plugins\input-mask\jquery.inputmask.date.extensions.js" />
@@ -475,6 +475,7 @@
     <Content Include="js\plugins\misc\jquery.placeholder.js" />
     <Content Include="js\plugins\misc\modernizr.min.js" />
     <Content Include="js\plugins\misc\respond.min.js" />
+    <Content Include="js\plugins\moment\moment.min.js" />
     <Content Include="js\plugins\morris\morris.js" />
     <Content Include="js\plugins\morris\morris.min.js" />
     <Content Include="js\plugins\slimScroll\jquery.slimscroll.js" />
@@ -483,12 +484,20 @@
     <Content Include="js\plugins\sparkline\jquery.sparkline.min.js" />
     <Content Include="js\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="js\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="js\reserva.js" />
     <Content Include="Login.aspx" />
     <Content Include="PanelGeneral.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePage.cs" />
+    <Compile Include="GestionarAtencionPaciente.aspx.cs">
+      <DependentUpon>GestionarAtencionPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarAtencionPaciente.aspx.designer.cs">
+      <DependentUpon>GestionarAtencionPaciente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionarHorarioAtencion.aspx.cs">
       <DependentUpon>GestionarHorarioAtencion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -502,6 +511,13 @@
     </Compile>
     <Compile Include="GestionarPaciente.aspx.designer.cs">
       <DependentUpon>GestionarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarReservaCitas.aspx.cs">
+      <DependentUpon>GestionarReservaCitas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarReservaCitas.aspx.designer.cs">
+      <DependentUpon>GestionarReservaCitas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.Master.cs">
       <DependentUpon>Home.Master</DependentUpon>

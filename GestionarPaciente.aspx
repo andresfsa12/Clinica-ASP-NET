@@ -43,9 +43,7 @@
                             <div class="form-group">
                                 <label>SEXO:</label>
                             </div>
-                            <div class="form-group">
-                               <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
-                            </div>
+                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
                             <div class="form-group">
                                 <label>EDAD:</label>
                              </div>

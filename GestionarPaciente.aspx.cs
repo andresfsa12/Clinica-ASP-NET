@@ -18,14 +18,20 @@ namespace CapaPresentacion
         {
             if (!Page.IsPostBack)
             {
-                
+                List<ListItem> items = new List<ListItem>();
+                items.Add(new ListItem("Masculino", "M"));
+                items.Add(new ListItem("Femenino", "F"));
+                ddlSexo.DataSource = items;
+                ddlSexo.DataTextField = "Text";
+                ddlSexo.DataValueField = "Value";
+                ddlSexo.DataBind();
             }
         }
 
         [WebMethod]
         public static List<Paciente> ListarPacientes()
         {
-            List<Paciente> Lista = null;
+            List<Paciente> Lista;
             try
             {
                 Lista = PacienteLN.getInstance().ListarPacientes();

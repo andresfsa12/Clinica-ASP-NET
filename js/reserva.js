@@ -22,7 +22,7 @@ function searchPacienteDni(dni) {
         },
         success: function (data) {
             if (data.d == null) {
-                alert('No exite el paciente con dni' + dni);
+                alert('No existe el paciente con dni' + dni);
                 limpiarDatosPaciente();
             } else {
                 llenarDatosPaciente(data.d);

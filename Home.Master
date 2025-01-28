@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="CapaPresentacion.Home"  %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="CapaPresentacion.Home" ClientIDMode="Static"  %>
 
 <!DOCTYPE html>
 
@@ -148,7 +148,7 @@
                         </a>
                     </li>
                     <li class="active">
-                        <a href="#">
+                        <a href="GestionarReservaCitas.aspx">
                             <i class="fa fa-th"></i>
                                <span>Reserva de citas</span>
                         </a>
@@ -177,6 +177,12 @@
             </section>
             <section class="content">
                 <form id="form1" runat="server">
+                    <asp:ScriptManager ID="ScriptManager" runat="server">
+                        <Scripts>
+                            <asp:ScriptReference Name="MicrosoftAjax.js" />
+                            <asp:ScriptReference Name="MicrosoftAjaxWebForms.js" />
+                        </Scripts>
+                    </asp:ScriptManager>
                     <div>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             <!--TODO LO QUE VA EN LAS PAGINAS QUE HEREDAN DEL MASTER PAGE-->
