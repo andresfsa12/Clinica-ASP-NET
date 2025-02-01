@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="contentBody" runat="server">
     <asp:UpdatePanel ID="upPanel" runat="server">
      <ContentTemplate>
          <section class="content-header">
@@ -124,14 +124,14 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <asp:Button ID="btnReservarCita" runat="server" Text="Reservar Cita" CssClass="btn btn-primary" OnClick="btnReservarCita_Click" />
-                                </div>
-                            </div>
 
+                            </div>
+                           <br />
+                           <div class="row">
+                               <div class="col-md-12 text-center">
+                                   <asp:Button ID="btnReservarCita" runat="server" Text="Reservar Cita" CssClass="btn btn-primary" OnClick="btnReservarCita_Click" />
+                               </div>
+                           </div>
                             
                          </div>
                      </div>
@@ -139,7 +139,7 @@
              </div>
 
          </section>
-         <asp:HiddenField ID="idPaciente" runat="server" Visible="false" />
+         <asp:HiddenField ID="idPaciente" runat="server" />
      </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

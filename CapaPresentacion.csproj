@@ -324,6 +324,7 @@
     <Content Include="css\timepicker\bootstrap-timepicker.css" />
     <Content Include="css\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GestionarAtencionCita.aspx" />
     <Content Include="GestionarAtencionPaciente.aspx" />
     <Content Include="GestionarHorarioAtencion.aspx" />
     <Content Include="GestionarPaciente.aspx" />
@@ -491,6 +492,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePage.cs" />
+    <Compile Include="GestionarAtencionCita.aspx.cs">
+      <DependentUpon>GestionarAtencionCita.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarAtencionCita.aspx.designer.cs">
+      <DependentUpon>GestionarAtencionCita.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionarAtencionPaciente.aspx.cs">
       <DependentUpon>GestionarAtencionPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

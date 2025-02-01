@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="GestionarAtencionPaciente.aspx.cs" Inherits="CapaPresentacion.GestionarAtencionPaciente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="contentBody" runat="server">
      <section class="content-header">
      <div class="text-center">
          <h1>GESTIONAR ATENCIÓN MÉDICA</h1>
@@ -10,12 +10,12 @@
  </section>
  <section class="content invoice">
      <!-- LISTA DE LAS CITAS MÉDICAS QUE FUERON REGISTRADAS PARA EL DÍA ACTUAL -->
-     <asp:DataList ID="dlAtencionMedica" runat="server" CssClass="table table-striped" RepeatColumns="1" OnItemCommand="dlAtencionMedica_ItemCommand">
+     <asp:DataList ID="dlAtencionMedica" runat="server" CssClass="table table-striped" RepeatColumns="1" OnItemCommand="dlAtencionMedica_ItemCommand" >
          <ItemTemplate>
              <table>
                  <tr>
                      <td rowspan="2">
-                         <asp:Image ID="imgPaciente" runat="server" Height="200px" Width="200px" ImageUrl="~/img/avatar5.png" />
+                         <asp:Image  ID="imgPaciente" runat="server" Height="200px" Width="200px" ImageUrl="~/img/avatar5.png" />
                      </td>
                      <td>
                          <strong>&nbsp;&nbsp;ID Cita:</strong>
@@ -30,7 +30,7 @@
                          <strong>&nbsp;&nbsp;Edad:</strong>
                          <asp:Label ID="lblEdad" runat="server" Text='<%#Eval("Paciente.Edad") %>' Font-Size="Medium"></asp:Label><br />
                          <strong>&nbsp;&nbsp;Sexo:</strong>
-                         <asp:Label ID="lblSexo" runat="server" Text='<%#(Eval("Paciente.Sexo").ToString() == "M"?"Masculino":"Femenino") %>'></asp:Label>
+                         <asp:Label ID="lblSexo" runat="server" Text='<%#(Eval("Paciente.Sexo").ToString() == "M"?"Masculino":"Femenino") %>'></asp:Label> 
                          <br />
                      </td>
                  </tr>

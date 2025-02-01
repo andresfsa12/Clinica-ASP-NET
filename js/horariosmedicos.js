@@ -8,7 +8,7 @@ function addRow(obj) {
         var fecha = moment(obj.Fecha);
 
         if (fecha.isValid()) {
-            fecha = fecha.format("DD/MM/YYYY");
+            fecha = fecha.format("dd/mm/yyyy");
 
             tabla.fnAddData([
                 '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o"></i></button>&nbsp;',

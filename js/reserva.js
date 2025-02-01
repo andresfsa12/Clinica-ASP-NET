@@ -50,3 +50,73 @@ function limpiarDatosPaciente() {
     $("#txtEdad").val("");
     $("#txtSexo").val("");
 }
+/////////////////////////////////////////////////////////////////
+
+$("#btnReservarCita").on('click', function (e) {
+    e.preventDefault();
+
+    // Obtener el ID del paciente seleccionado (asumiendo que está almacenado en algún lugar)
+    var idPaciente = $("#idPaciente").val(); // Ajustar según tu implementación
+
+    if (idPaciente === "") {
+        alert("Debe seleccionar un paciente.");
+        return;
+    }
+
+    // Obtener el horario seleccionado (asumiendo que está almacenado en algún lugar)
+    var horarioSeleccionado = obtenerHorarioSeleccionado(); // Implementar esta función
+
+    if (!horarioSeleccionado) {
+        alert("Debe seleccionar un horario.");
+        return;
+    }
+
+    // Construir el objeto de la cita
+    var cita = {
+        PacienteId: parseInt(idPaciente),
+        Hora: horarioSeleccionado.Hora,
+        FechaReserva: horarioSeleccionado.Fecha,
+        MedicoId: horarioSeleccionado.MedicoId
+    };
+
+    // Enviar la solicitud AJAX
+    $.ajax({
+        type: "POST",
+        url: "GestionarReservaCitas.aspx/RegistrarCita",
+        data: JSON.stringify(cita),
+        contentType: 'application/json; charset=utf-8',
+        success: function (result) {
+            if (result.d) {
+                alert("Cita registrada correctamente.");
+                // Limpiar o redireccionar según sea necesario
+            } else {
+                alert("Error al registrar la cita.");
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.error("Error en la solicitud AJAX:", xhr.status, thrownError);
+        }
+    });
+});
+
+// Función para obtener el horario seleccionado (implementación a ajustar)
+function obtenerHorarioSeleccionado() {
+    // Lógica para obtener el horario seleccionado 
+    // (por ejemplo, a partir de un elemento seleccionado en un gridview, 
+    // un input radio, etc.)
+
+    // Ejemplo: Suponiendo que el horario está almacenado en un input oculto
+    var hora = $("#horaSeleccionada").val();
+    var fecha = $("#fechaSeleccionada").val();
+    var medicoId = $("#medicoIdSeleccionado").val();
+
+    if (hora && fecha && medicoId) {
+        return {
+            Hora: hora,
+            Fecha: fecha,
+            MedicoId: parseInt(medicoId)
+        };
+    } else {
+        return null;
+    }
+}

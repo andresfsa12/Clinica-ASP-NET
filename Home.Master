@@ -9,7 +9,7 @@
     <title>Sistema de Clinica</title>
      <asp:ContentPlaceHolder ID="head" runat="server">
      </asp:ContentPlaceHolder>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
@@ -19,7 +19,7 @@
 
     <!-- DataTables -->
     <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" />
-
+    <div>
     <style>
         html, body {
         min-height: 100%;
@@ -108,6 +108,7 @@
             cursor: pointer;
         }
     </style>
+        </div>
 </head>
 <body class="skin-blue">
     <header class="header">
@@ -153,6 +154,13 @@
                                <span>Reserva de citas</span>
                         </a>
                     </li>
+                    <li class="active">
+                        <a href="GestionarAtencionPaciente.aspx">
+                            <i class="fa fa-th"></i>
+                               <span>Atencion de citas</span>
+                        </a>
+                    </li>
+        
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-th"></i>
@@ -184,7 +192,7 @@
                         </Scripts>
                     </asp:ScriptManager>
                     <div>
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        <asp:ContentPlaceHolder ID="contentBody" runat="server">
                             <!--TODO LO QUE VA EN LAS PAGINAS QUE HEREDAN DEL MASTER PAGE-->
                         </asp:ContentPlaceHolder>
                     </div>
