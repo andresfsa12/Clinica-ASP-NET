@@ -9,12 +9,14 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using CapaEntidades;
 using CapaLogicaNegocio;
+using CapaAccesoDatos;
+
 
 namespace CapaPresentacion
 {
     public partial class frmGestionarPaciente : System.Web.UI.Page
     {
-        public void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
@@ -31,68 +33,84 @@ namespace CapaPresentacion
         [WebMethod]
         public static List<Paciente> ListarPacientes()
         {
-            List<Paciente> Lista;
             try
             {
-                Lista = PacienteLN.getInstance().ListarPacientes();
+                return PacienteDAO.getInstance().ListarPacientes();
             }
             catch (Exception ex)
             {
-                Lista = new List<Paciente>();
+                // Registrar el error para su posterior análisis
+                System.Diagnostics.Debug.WriteLine("Error al listar pacientes: " + ex.Message);
+                return new List<Paciente>();
             }
-            return Lista;
         }
 
         [WebMethod]
-        public static bool ActualizarDatosPaciente(String id, String direccion)
+        public static bool ActualizarDatosPaciente(string id, string direccion)
         {
-            Paciente objPaciente = new Paciente()
+            if (int.TryParse(id, out int idPaciente))
             {
-                IdPaciente = Convert.ToInt32(id),
-                Direccion = direccion
-            };
+                Paciente objPaciente = new Paciente
+                {
+                    IdPaciente = idPaciente,
+                    Direccion = direccion
+                };
 
-            bool ok = PacienteLN.getInstance().Actualizar(objPaciente);
-
-            return ok;
+                try
+                {
+                    return PacienteDAO.getInstance().Actualizar(objPaciente);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error al actualizar paciente: " + ex.Message);
+                    return false;
+                }
+            }
+            return false;
         }
 
         [WebMethod]
-        public static bool EliminarDatosPaciente(String id)
+        public static bool EliminarDatosPaciente(string id)
         {
-            Int32 idPaciente = Convert.ToInt32(id);
-
-            bool ok = PacienteLN.getInstance().Eliminar(idPaciente);
-
-            return ok;
-
+            if (int.TryParse(id, out int idPaciente))
+            {
+                try
+                {
+                    return PacienteDAO.getInstance().Eliminar(idPaciente);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error al eliminar paciente: " + ex.Message);
+                    return false;
+                }
+            }
+            return false;
         }
 
-        public Paciente GetEntity()
+        private Paciente GetEntity()
         {
-            Paciente objPaciente = new Paciente();
-            objPaciente.IdPaciente = 0;
-            objPaciente.Nombres = txtNombres.Text;
-            objPaciente.ApPaterno = txtApPaterno.Text;
-            objPaciente.ApMaterno = txtApMaterno.Text;
-            objPaciente.Edad = txtEdad.Text;
-            objPaciente.Sexo = ddlSexo.Text; 
-            objPaciente.NroDocumento = txtNroDocumento.Text;
-            objPaciente.Direccion = txtDireccion.Text;
-            objPaciente.Telefono = txtTelefono.Text;
-            objPaciente.Estado = true;
-
-            return objPaciente;
+            return new Paciente
+            {
+                IdPaciente = 0,
+                Nombres = txtNombres.Text,
+                ApPaterno = txtApPaterno.Text,
+                ApMaterno = txtApMaterno.Text,
+                Edad = txtEdad.Text,
+                Sexo = ddlSexo.SelectedValue,
+                NroDocumento = txtNroDocumento.Text,
+                Direccion = txtDireccion.Text,
+                Telefono = txtTelefono.Text,
+                Estado = true
+            };
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            
-                //Registro del paciente
-                Paciente objPaciente = GetEntity();
-                //Enviar a capa logica  de negocio
-                bool response = PacienteLN.getInstance().RegistrarPaciente(objPaciente);
-                if (response == true)
+            Paciente objPaciente = GetEntity();
+            try
+            {
+                bool response = PacienteDAO.getInstance().RegistrarPaciente(objPaciente);
+                if (response)
                 {
                     Response.Write("<script>alert('REGISTRO CORRECTO.')</script>");
                 }
@@ -100,7 +118,12 @@ namespace CapaPresentacion
                 {
                     Response.Write("<script>alert('REGISTRO INCORRECTO.')</script>");
                 }
-            
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error al registrar paciente: " + ex.Message);
+                Response.Write("<script>alert('ERROR AL REGISTRAR.')</script>");
+            }
         }
-     }
+    }
 }

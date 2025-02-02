@@ -19,7 +19,6 @@
 
     <!-- DataTables -->
     <link href="css/datatables/dataTables.bootstrap.css" rel="stylesheet" />
-    <div>
     <style>
         html, body {
         min-height: 100%;
@@ -108,7 +107,6 @@
             cursor: pointer;
         }
     </style>
-        </div>
 </head>
 <body class="skin-blue">
     <header class="header">

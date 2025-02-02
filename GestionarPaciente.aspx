@@ -10,64 +10,63 @@
             <div class="col-md-6">
                 <div class="box box-primary">
                         <div class="box-body">
-                        <div class="form-group">
-                            <label>DOCUMENTO DE IDENTIDAD:</label>
-                         </div>
-                        <div class="form-group">
-                           <asp:TextBox ID="txtNroDocumento" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                            <div class="form-group">
+                                <label for="txtNroDocumento">DOCUMENTO DE IDENTIDAD:</label>
+                                <asp:TextBox ID="txtNroDocumento" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNroDocumento" runat="server" ControlToValidate="txtNroDocumento" ErrorMessage="El documento de identidad es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtNombres">NOMBRES:</label>
+                                <asp:TextBox ID="txtNombres" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvNombres" runat="server" ControlToValidate="txtNombres" ErrorMessage="El nombre es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtApPaterno">APELLIDO PATERNO:</label>
+                                <asp:TextBox ID="txtApPaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvApPaterno" runat="server" ControlToValidate="txtApPaterno" ErrorMessage="El apellido paterno es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtApMaterno">APELLIDO MATERNO:</label>
+                                <asp:TextBox ID="txtApMaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvApMaterno" runat="server" ControlToValidate="txtApMaterno" ErrorMessage="El apellido materno es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>NOMBRES:</label>
-                         </div>
-                        <div class="form-group">
-                           <asp:TextBox ID="txtNombres" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
-                        </div>
-                        <div class="form-group">
-                            <label>APELLIDO PATERNO:</label>
-                         </div>
-                        <div class="form-group">
-                           <asp:TextBox ID="txtApPaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
-                        </div>
-                        <div class="form-group">
-                            <label>APELLIDO MATERNO:</label>
-                         </div>
-                        <div class="form-group">
-                           <asp:TextBox ID="txtApMaterno" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
-                        </div>
-                     </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                      <div class="box box-primary">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>SEXO:</label>
+                                <label for="ddlSexo">SEXO:</label>
                             </div>
-                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control"></asp:DropDownList>
+                             <asp:DropDownList ID="ddlSexo" runat="server" CssClass="form-control">
+                             </asp:DropDownList>
+                             <asp:RequiredFieldValidator ID="rfvSexo" runat="server" ControlToValidate="ddlSexo" InitialValue="" ErrorMessage="El sexo es obligatorio." CssClass="text-danger" Display="Dynamic" />
+
                             <div class="form-group">
                                 <label>EDAD:</label>
                              </div>
                             <div class="form-group">
-                               <asp:TextBox ID="txtEdad" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                                <label for="txtEdad">EDAD:</label>
+                                <asp:TextBox ID="txtEdad" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvEdad" runat="server" ControlToValidate="txtEdad" ErrorMessage="La edad es obligatoria." CssClass="text-danger" Display="Dynamic" />
+                                <asp:RangeValidator ID="rvEdad" runat="server" ControlToValidate="txtEdad" MinimumValue="0" MaximumValue="120" Type="Integer" ErrorMessage="La edad debe estar entre 0 y 120." CssClass="text-danger" Display="Dynamic" />
                             </div>
-                            
                            
-                            <div class="form-group">
-                                <label>TELEFONO:</label>
-                             </div>
-                            <div class="form-group">
-                               <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
-                            </div>
-                            <div class="form-group">
-                             <label>DIRECCION:</label>
-                            </div>
                              <div class="form-group">
-                                <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control"></asp:TextBox>  
+                                 <label for="txtTelefono">TELÉFONO:</label>
+                                 <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="El teléfono es obligatorio." CssClass="text-danger" Display="Dynamic" />
+                             </div>
+                             <div class="form-group">
+                                 <label for="txtDireccion">DIRECCIÓN:</label>
+                                 <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="rfvDireccion" runat="server" ControlToValidate="txtDireccion" ErrorMessage="La dirección es obligatoria." CssClass="text-danger" Display="Dynamic" />
                              </div>
                         </div>
+                      </div>
                     </div>
                 </div>   
-        </div>
        
             <div align="center"  >
                 <table>

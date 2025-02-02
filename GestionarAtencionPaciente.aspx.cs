@@ -17,53 +17,77 @@ namespace CapaPresentacion
         {
             if (!IsPostBack)
             {
-                llenarDataList();
+                try
+                {
+                    llenarDataList();
+                    lblFechaAtencion.Text = DateTime.Now.ToShortDateString();
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensajeError("Error al cargar la lista de citas: " + ex.Message);
+                }
             }
         }
 
         private void llenarDataList()
         {
-            List<Cita> ListaCitas = CitaLN.getInstance().ListarCitas();
-            dlAtencionMedica.DataSource = ListaCitas;
-            dlAtencionMedica.DataBind();
+            try
+            {
+                List<Cita> ListaCitas = CitaLN.getInstance().ListarCitas();
+                dlAtencionMedica.DataSource = ListaCitas;
+                dlAtencionMedica.DataBind();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensajeError("Error al llenar la lista de citas: " + ex.Message);
+            }
         }
 
         protected void dlAtencionMedica_ItemCommand(object source, DataListCommandEventArgs e)
         {
             String IdCita = (e.Item.FindControl("hdIdCita") as HiddenField).Value;
 
-            if (e.CommandName == COMMAND_REGISTER)
+            try
             {
-                // realizar el registro de la atención
-                // Redirección a la página de GestionarAtencionCita.aspx
-                bool response = CitaLN.getInstance().ActualizarCita(Convert.ToInt32(IdCita), "A");
-
-                if (response)
+                if (e.CommandName == COMMAND_REGISTER)
                 {
-                    Response.Redirect("GestionarAtencionCita.aspx?idcita=" + IdCita);
+                    // realizar el registro de la atención
+                    bool response = CitaLN.getInstance().ActualizarCita(Convert.ToInt32(IdCita), "A");
+
+                    if (response)
+                    {
+                        Response.Redirect("GestionarAtencionCita.aspx?idcita=" + IdCita);
+                    }
+                    else
+                    {
+                        MostrarMensajeError("No se puede realizar la atención de la cita.");
+                    }
                 }
-                else
+                else if (e.CommandName == COMMAND_CANCEL)
                 {
-                    Response.Write("<script>alert('NO SE PUEDE REALIZAR LA ATENCIÓN DE LA CITA.')</script>");
+                    // realizar la cancelación de la reserva de cita
+                    bool response = CitaLN.getInstance().ActualizarCita(Convert.ToInt32(IdCita), "E");
+
+                    if (response)
+                    {
+                        // recargar la información
+                        llenarDataList();
+                    }
+                    else
+                    {
+                        MostrarMensajeError("No se puede eliminar la cita.");
+                    }
                 }
-
-
             }
-            else if (e.CommandName == COMMAND_CANCEL)
+            catch (Exception ex)
             {
-                // realizar la cancelación de la reserva de cita
-                bool response = CitaLN.getInstance().ActualizarCita(Convert.ToInt32(IdCita), "E");
-
-                if (response)
-                {
-                    // recargar la información
-                    llenarDataList();
-                }
-                else
-                {
-                    Response.Write("<script>alert('NO SE PUEDE ELIMINAR LA CITA.')</script>");
-                }
+                MostrarMensajeError("Error al procesar la solicitud: " + ex.Message);
             }
+        }
+
+        private void MostrarMensajeError(string mensaje)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + mensaje + "');", true);
         }
     }
 }

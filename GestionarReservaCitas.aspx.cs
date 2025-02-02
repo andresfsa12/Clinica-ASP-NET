@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaAccesoDatos;
 using CapaEntidades;
 using CapaLogicaNegocio;
 
@@ -73,7 +74,7 @@ namespace CapaPresentacion
         [WebMethod]
         public static Paciente BuscarPacienteDNI(String dni)
         {
-            return PacienteLN.getInstance().BuscarPacienteDNI(dni);
+            return PacienteDAO.getInstance().BuscarPacienteDNI(dni);
         }
 
         protected void btnBuscarHorario_Click(object sender, EventArgs e)
