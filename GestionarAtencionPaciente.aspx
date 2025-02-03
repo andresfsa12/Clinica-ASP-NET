@@ -20,7 +20,7 @@
                         <td>
                             <strong>&nbsp;&nbsp;ID Cita:</strong>
                             <asp:Label ID="lblIdCita" runat="server" Text='<%#Eval("IdCita") %>' Font-Size="Medium"></asp:Label><br />
-                            <asp:HiddenField ID="hdIdCita" runat="server" Value='<%#Eval("IdCita") %>'  />
+                            <asp:HiddenField ID="hdIdCita" runat="server" Value='<%#Eval("IdCita") %>' /> <!--Se declara como valor oculto-->
                             <strong>&nbsp;&nbsp;Nombres:</strong>
                             <asp:Label ID="lblNombres" runat="server" Text='<%#Eval("Paciente.Nombres") %>' Font-Size="Medium"></asp:Label><br />
                             <strong>&nbsp;&nbsp;Apellido Paterno:</strong>

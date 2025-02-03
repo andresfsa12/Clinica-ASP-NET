@@ -45,13 +45,19 @@
              <div class="center-block">
                  <div class="col-sm-12 invoice-col">
                      <br />
-                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-block btn-primary"  /> <!--OnClick="btnRegistrar_Click"-->
+                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-block btn-primary" OnClick="btnRegistrar_Click"  /> 
                      <br />
                  </div>
              </div>
          </div>
      </div>
+     <div class="row">
+    <div class="col-sm-12 invoice-col">
+        <asp:Label ID="lblError" runat="server" ForeColor="Red" />
+    </div>
+</div>
  </section>
+    <asp:HiddenField ID="hfIdPaciente" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
 </asp:Content>
